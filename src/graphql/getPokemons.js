@@ -1,5 +1,7 @@
+//import gql tag function.
 import gql from 'graphql-tag';
 
+//define GraphQL query.
 export const GET_POKEMONS = gql`
     query pokemons($first: Int!) {
         pokemons(first: $first) {

@@ -1,5 +1,6 @@
 {
   "name": "pokemon-gql-app",
+  "homepage": "https://taranmand.me/pokemon-graphql-app/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

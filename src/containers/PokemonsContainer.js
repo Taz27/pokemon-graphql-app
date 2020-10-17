@@ -7,26 +7,29 @@ export default function PokemonsContainer() {
     
     let pokemons_array;
 
-    // const {loading, error, data: {pokemons = []} = {}} = useQuery(GET_POKEMONS, {
-    //     variables: {first: 9}
-    // });
+    //pull out 'loading', 'error' and 'data' props from object returned by useQuery hook.
     const { loading, error, data } = useQuery(GET_POKEMONS, {
         variables: {first: 9}
     });
 
+    //if data exists, map the pokemons array into Pokemon components.
     if (data && data.pokemons) {
         pokemons_array = data.pokemons.map(pokemon => <Pokemon key={pokemon.id} pokemon={pokemon} />);
     }
     
-    // console.log(error);
-    // console.log(data);
-    // console.log(loading);
-
-    //if (error) return error.errors.map(e => <h2>Error: {e.message}</h2>);
-
+    //if query is in 'loading' state, show message on screen.
+    if (loading) return <h3 className="center">Loading...</h3>;
+    
+    //if error exists, log it and show error message.
+    if (error) {
+        console.error(error);
+        return <h2>Error!</h2>;
+    }
+    
+    //Return Pokemon components if there is no error and not in loading state.
     return (
         <div className="container">
-            {loading ? <h2>...Loading</h2> : pokemons_array}
+            {pokemons_array}
         </div>
     );
 }
